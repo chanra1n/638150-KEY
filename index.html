@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <title>SCHIZO-KEY</title>
+    <title>638150-KEY</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,9 +31,11 @@
 
         input {
             padding: 15px;
+            padding-left:20px;
+            padding-right:20px;
             font-size: 20px;
             border: none;
-            border-radius: 0px;
+            border-radius: 100vmin;
             margin-right: 10px;
             display: block;
             font-size: 25px;
@@ -51,7 +53,7 @@
 
         #output {
             padding: 15px;
-            font-size: 30px;
+            font-size: 27.5px;
             border-radius: 5px;
             display: block;
             color: gray;
@@ -100,9 +102,8 @@
 </head>
 
 <body>
-    <img src="night_sky.gif" alt="Night Sky">
     <div class="middle">
-        <input type="text" id="input" onkeyup="schz_translate(this.value)">
+        <input type="text" placeholder = "..." id="input" onkeyup="schz_translate(this.value)">
         <div id="output"></div>
     </div>
 </body>
@@ -169,7 +170,7 @@
             return;
         }
         if (!/^[a-zA-Z\s]+$/.test(value)) {
-            document.getElementById('output').innerText = 'One or more characters are not letters or spaces';
+            document.getElementById('output').innerText = 'One or more characters are not letters.';
             return;
         }
         if (value.length == 1) {
