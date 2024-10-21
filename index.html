@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>SCHIZO-KEY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            font-family: 'Courier Prime', Courier, monospace;
+        }
+
+        img {
+            height: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 25%;
+            animation : psychadelic 5s infinite;
+        }
+
+        input {
+            padding: 15px;
+            font-size: 20px;
+            border: none;
+            border-radius: 0px;
+            margin-right: 10px;
+            display: block;
+            font-size: 25px;
+            outline: none;
+            font-family: 'Courier Prime', Courier, monospace;
+            font-weight: 900;
+            max-width: 50vmin;
+            text-align:left;
+            position:sticky;
+            top:0;
+            width:100%;
+            margin-bottom: 10px;
+            background-color:white;
+        }
+
+        #output {
+            padding: 15px;
+            font-size: 30px;
+            border-radius: 5px;
+            display: block;
+            color: gray;
+            font-weight: 900;
+            max-width: 50vmin;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            text-align:right;
+        }
+
+        .middle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-height: 75%;
+            overflow-y:auto;
+            overflow-x:hidden;
+            box-sizing: border-box;
+        }
+
+        .nums {
+            color: yellow;
+        }
+
+        .steps {
+            color: cyan;
+        }
+
+        .total {
+            color: magenta;
+        }
+
+        @keyframes psychadelic {
+            0% {
+                filter: hue-rotate(0deg) sepia(1) blur(5px);
+            }
+
+            100% {
+                filter: hue-rotate(360deg) sepia(0) blur(5px);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <img src="night_sky.gif" alt="Night Sky">
+    <div class="middle">
+        <input type="text" id="input" onkeyup="schz_translate(this.value)">
+        <div id="output"></div>
+    </div>
+</body>
+<script>
+    schizo_map = {
+        "A": 1,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 5,
+        "F": 6,
+        "G": 9,
+        "H": 8,
+        "I": 1,
+        "J": 1,
+        "K": 4,
+        "L": 7,
+        "M": 7,
+        "N": 9,
+        "O": 0,
+        "P": 5,
+        "Q": 3,
+        "R": 5,
+        "S": 6,
+        "T": 2,
+        "U": 6,
+        "V": 7,
+        "W": 2,
+        "X": 9,
+        "Y": 3,
+        "Z": 5
+    }
+
+    function schizo(word) {
+        const nums = Array.from(word.toUpperCase())
+            .filter(c => c !== ' ')
+            .map(c => schizo_map[c] || 0);
+        let sum = nums.reduce((acc, num) => acc + num, 0);
+
+        const reduceToSingleDigit = (num) => {
+            let steps = [];
+            while (num > 9) {
+                steps.push(num);
+                num = Array.from(num.toString()).map(Number).reduce((acc, n) => acc + n, 0);
+            }
+            steps.push(num);
+            steps.shift();
+            return steps;
+        };
+
+        const steps = reduceToSingleDigit(sum);
+        const wordTotal = steps[steps.length - 1];
+
+        if (steps.length === 0) {
+            return `<span class="nums">${nums.join('</span> + <span class="nums">')}</span> = <span class="total">${sum}</span>`;
+        }
+
+        return `<span class="nums">${nums.join('</span> + <span class="nums">')}</span> = <span class="total">${sum}</span> -> ${steps.map(step => `<span class="steps">${step}</span>`).join(' -> ')}`;
+    }
+
+    function schz_translate(value) {
+        if (!value) {
+            document.getElementById('output').innerText = '';
+            return;
+        }
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
+            document.getElementById('output').innerText = 'One or more characters are not letters or spaces';
+            return;
+        }
+        if (value.length == 1) {
+            document.getElementById('output').innerText = schizo_map[value.toUpperCase()] || 0;
+            return;
+        }
+        document.getElementById('output').innerHTML = schizo(value);
+    }
+</script>
