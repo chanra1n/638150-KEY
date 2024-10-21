@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>638150-KEY</title>
     <style>
         body {
@@ -64,6 +65,7 @@
     width: 100%;
     max-width: 75vmin;
     flex-direction: column;
+    z-index: 1000;
 }
 
         .nums {
@@ -88,10 +90,71 @@
             }
         }
 
+        #sidebar {
+            position: fixed;
+            left:0;
+            top: 0;
+            width:100%;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            color:white;
+            background-color:transparent;
+            padding:10px;
+            overflow:hidden;
+            overflow-x:auto;
+        }
+
+        #sidebar button {
+            padding: 7.5px;
+            border: none;
+            background-color: white;
+            color: black;
+            font-size: 12px;
+            font-family: 'Courier Prime', Courier, monospace;
+            font-weight: 900;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius:100vmin;
+            margin:10px;
+            vertical-align: middle;
+            padding-left:15px;
+            padding-right: 15px;
+            opacity:25%;
+            width: max-content;
+
+
+        }
+
+        #sidebar button:hover {
+            opacity:100%;
+        }
+
+
+        #sidebar button i {
+            float:left;
+            margin-right:10px;
+            vertical-align: middle;
+            font-size:15px;
+            padding:0px;
+        }
+
+        #sidebar button span {
+            float:right;
+            vertical-align: middle;
+        }
+
     </style>
 </head>
 
 <body>
+    <div id ="sidebar">
+        <button onclick = "launchSite('key.txt')"><i class="ri-download-fill"></i> <span>Conversion Key</span></button>
+        <button onclick = "launchSite('https://www.reddit.com/r/Weird/comments/1g8lw2x/a_friend_of_mine_sent_me_this_and_is_convinced/')"><i class="ri-reddit-line"></i> <span>Original Reddit Post</span></button>
+        <button onclick = "launchSite('https://disorderofsevenstars.tumblr.com/')"><i class="ri-tumblr-fill"></i> <span>Disorder of Seven Stars Tumblr Blog</span></button>
+    </div>
     <div class="middle">
         <input type="text" placeholder = "..." id="input" onkeyup="schz_translate(this.value)">
         <div id="output"></div>
@@ -169,4 +232,10 @@
         }
         document.getElementById('output').innerHTML = schizo(value);
     }
+
+    // i'm aware this is a shitty way to do this, but please leave me alone i'm very tired :)
+    function launchSite(url) {
+        window.open(url, '_blank');
+    }
+
 </script>
