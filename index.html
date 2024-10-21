@@ -19,62 +19,52 @@
             font-family: 'Courier Prime', Courier, monospace;
         }
 
-        img {
-            height: auto;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 25%;
-            animation : psychadelic 5s infinite;
-        }
-
         input {
             padding: 15px;
-            padding-left:20px;
-            padding-right:20px;
-            font-size: 20px;
-            border: none;
-            border-radius: 100vmin;
-            margin-right: 10px;
-            display: block;
-            font-size: 25px;
-            outline: none;
-            font-family: 'Courier Prime', Courier, monospace;
-            font-weight: 900;
-            max-width: 50vmin;
-            text-align:left;
-            position:sticky;
-            top:0;
-            width:100%;
-            margin-bottom: 10px;
-            background-color:white;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 100vmin;
+    font-size: 25px;
+    outline: none;
+    font-family: 'Courier Prime', Courier, monospace;
+    font-weight: 900;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    width: -webkit-fill-available;
+    background-color: white;
+    margin: 0px;
         }
 
         #output {
             padding: 15px;
-            font-size: 27.5px;
-            border-radius: 5px;
-            display: block;
-            color: gray;
-            font-weight: 900;
-            max-width: 50vmin;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-            text-align:right;
+    font-size: 27.5px;
+    border-radius: 5px;
+    color: gray;
+    font-weight: 900;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    text-align: right;
         }
 
         .middle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            max-height: 75%;
-            overflow-y:auto;
-            overflow-x:hidden;
-            box-sizing: border-box;
-        }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-height: 75%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: black;
+    display: flex;
+    width: 100%;
+    max-width: 75vmin;
+    flex-direction: column;
+}
 
         .nums {
             color: yellow;
